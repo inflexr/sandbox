@@ -1,0 +1,247 @@
+$blue-azure: #3882f6;
+$blue-gunmetal: #1f2937;
+$white-flash: #e5e7eb;
+$white-powder: #f9faf8;
+
+@mixin hero-primary-text {
+  color: $white-powder;
+  font-size: 48px; 
+  font-weight: 800;
+}
+
+@mixin hero-second-text {
+  color: $white-flash;
+  font-size: 18px;
+}
+
+@mixin logo-text {
+  color: $white-powder;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@mixin info-text {
+  color: $blue-gunmetal;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+@mixin quote-text {
+  font: {
+    size: 24px;
+    style: italic;
+    weight: 300;
+  }
+  color: $blue-gunmetal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.message,
+header,
+main > *,
+footer {
+  padding-inline: 15%;
+}
+
+.sign-up {
+  background: $blue-azure;
+  border: none;
+  border-radius: 6px;
+  color: $white-flash;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 16px 0;
+  padding: 6px 24px;
+}
+
+.message {
+  background: red;
+  color: white;
+  display: flex;
+  flex-flow: row wrap;
+  font-weight: 700;
+  justify-content: space-between;
+  padding-block: 5px;
+}
+
+header {
+  align-items: center;
+  background: $blue-gunmetal;
+  display: flex;
+  justify-content: space-between;
+  padding-block: 16px;
+
+  > div {
+    @include logo-text;
+  }
+
+  nav ul {
+    @include hero-second-text;
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+}
+
+.hero {
+  @include hero-second-text;
+  background: $blue-gunmetal;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 32px;
+  justify-content: space-between;
+  padding-block: 80px;
+
+  > * {
+    margin: auto;
+  }
+
+  div {
+    flex: 1 1 50%;
+
+    h1 {
+      @include hero-primary-text;
+      line-height: 1em;
+      margin-bottom: 20px;
+    }
+  }
+
+  div.img {
+    align-items: center;
+    background: transparentize($color: gray, $amount: .5);
+    color: $white-powder;
+    display: flex;
+    flex: 1 1 auto;
+    height: 200px;
+    justify-content: center;
+    max-width: 500px;
+  }
+}
+
+.info {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
+  padding-block: 80px;
+  
+  h1 {
+    @include info-text;
+    margin-bottom: 30px;
+  }
+
+  div {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 40px;
+    justify-content: center;
+
+    figure {
+      align-items: center;
+      display: flex;
+      flex: 0 0 180px;
+      flex-flow: column nowrap;
+      gap: 20px;
+
+      img {
+        border: 5px solid $blue-azure;
+        border-radius: 16px;
+        height: 150px;
+        width: 150px;  
+      }
+
+      figcaption {
+        @include hero-second-text;
+        color: $blue-gunmetal;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.quote {
+  background: $white-flash;
+  padding-block: 80px;
+
+  blockquote {
+    @include quote-text;
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+
+    div {
+      @include logo-text;
+      align-self: flex-end;
+      color: $blue-gunmetal;
+      font-style: normal;
+    }
+  }
+}
+
+.call-to-action {
+  padding-block: 80px;
+
+  > div {
+    background: $blue-azure;
+    border-radius: 8px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 50px 10%;
+
+    p:nth-of-type(1) {
+      @include logo-text;
+      margin-bottom: 5px;
+    }
+
+    p:nth-of-type(2) {
+      @include hero-second-text;
+    }
+
+    button {
+      border: solid 3px $white-powder;
+    }
+  }
+}
+
+footer {
+  @include hero-second-text();
+  background: $blue-gunmetal;
+  padding-block: 30px;
+
+  > * {
+    margin: auto;
+    width: fit-content;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  header {
+    flex-direction: column;
+    gap: 16px;
+
+    nav ul {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+
+  .hero {
+    padding-top: 20px;
+  }
+}
